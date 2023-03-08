@@ -22,7 +22,7 @@ let AppModule = class AppModule {
     configure(consumer) {
         consumer
             .apply()
-            .exclude({ path: 'users/login', method: common_1.RequestMethod.POST }, { path: 'organizations/register', method: common_1.RequestMethod.POST }, { path: 'users/verifyEmail/:token', method: common_1.RequestMethod.GET })
+            .exclude()
             .forRoutes('*');
     }
 };

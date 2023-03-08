@@ -17,7 +17,5 @@ export const AppConfigValidationSchema = Joi.object({
     DB_NAME: Joi.string().required(),
     TTL: Joi.number().required(),
     LIMIT: Joi.number().required(),
-    MAIL_HOST: Joi.string().required(),
-    SECURE:Joi.string().required(),
 })
 

@@ -2,7 +2,7 @@ import { HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { catchError } from "rxjs";
 import { getRepository, Repository } from "typeorm";
-import { CreateMediaDto, GetAllMediaDto, UpdateMediaDto } from "./dto/media.dto";
+import { CreateMediaDto, GetAllMediaDto, SearchMediaDto, UpdateMediaDto } from "./dto/media.dto";
 import { Media } from "./entity/media.entity";
 
 
@@ -72,6 +72,12 @@ export class MediaService {
               }; 
 
             const result = await this.mediaRepository.findOne({where: modelParameter});
+            if(!result){
+                return {
+                    statusCode: HttpStatus.NOT_FOUND,
+                    message: 'Media not found',
+                }
+            }
             return {
                 statusCode: HttpStatus.OK,
                 message: 'Media found successfully',
@@ -80,14 +86,14 @@ export class MediaService {
         }catch(err){
             return {
                 statusCode: HttpStatus.BAD_REQUEST,
-                message: 'Media not found',
+                message: err.message,
                 
             }
         }
     }
 
     //Search media by title and description
-    async search(queryString: GetAllMediaDto): Promise<any>{
+    async search(queryString: SearchMediaDto): Promise<any>{
         try{
             let pageOptions = {
                 page: queryString.page || 0,
@@ -95,17 +101,19 @@ export class MediaService {
                 status: (queryString.status && ['active', 'inactive'].includes(queryString.status) ? queryString.status : 'active'),
             }
 
-            let filter = {
+            let filter:any = {
                 status: pageOptions.status,
             }
 
             if(queryString.title){
-                filter['title'] = queryString.title;
+                filter.title =  new RegExp(`${queryString.title}`, 'i');
             }
 
             if(queryString.description){
-                filter['description'] = queryString.description;
+                filter.description = new RegExp(`${queryString.description}`, 'i');
             }
+
+            console.log(filter);
 
             const result = await this.mediaRepository.find({
                 where: filter,

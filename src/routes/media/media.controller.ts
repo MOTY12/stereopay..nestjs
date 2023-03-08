@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
-import { CreateMediaDto, GetAllMediaDto, GetMediaDto, UpdateMediaDto } from "./dto/media.dto";
+import { CreateMediaDto, GetAllMediaDto, GetMediaDto, SearchMediaDto, UpdateMediaDto } from "./dto/media.dto";
 import { MediaService } from "./media.service";
 
 
@@ -14,19 +14,18 @@ export class MediaController {
         return this.mediaService.create(createMediaDto);
     }
 
-    @Get('/')
-    findAll(@Query() queryString: GetAllMediaDto) {
-        return this.mediaService.findAll(queryString);
-    }
+    // @Get('')
+    // findAll(@Query() queryString: GetAllMediaDto) {
+    //     return this.mediaService.findAll(queryString);
+    // }
 
     @Get(':id')
     findOne(@Param() params: GetMediaDto) {
         return this.mediaService.findOne(params.id);
     }
 
-    //search
-    @Get('search')
-    search(@Query() queryString: GetAllMediaDto) {
+    @Get('/search')
+    search(@Query() queryString: SearchMediaDto) {
         return this.mediaService.search(queryString);
     }
 

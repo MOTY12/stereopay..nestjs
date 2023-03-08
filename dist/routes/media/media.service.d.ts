@@ -1,6 +1,6 @@
 import { HttpStatus } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { CreateMediaDto, GetAllMediaDto, UpdateMediaDto } from "./dto/media.dto";
+import { CreateMediaDto, GetAllMediaDto, SearchMediaDto, UpdateMediaDto } from "./dto/media.dto";
 import { Media } from "./entity/media.entity";
 export declare class MediaService {
     private readonly mediaRepository;
@@ -29,10 +29,10 @@ export declare class MediaService {
         data: Media;
     } | {
         statusCode: HttpStatus;
-        message: string;
+        message: any;
         data?: undefined;
     }>;
-    search(queryString: GetAllMediaDto): Promise<any>;
+    search(queryString: SearchMediaDto): Promise<any>;
     update(id: any, updateMediaDto: UpdateMediaDto): Promise<{
         statusCode: HttpStatus;
         message: string;

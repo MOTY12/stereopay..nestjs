@@ -9,6 +9,11 @@ export declare class GetAllMediaDto {
     readonly limit: number;
     readonly page: number;
     readonly status: string;
+}
+export declare class SearchMediaDto {
+    readonly limit: number;
+    readonly page: number;
+    readonly status: string;
     readonly title: string;
     readonly description: string;
 }

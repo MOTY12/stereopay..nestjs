@@ -23,9 +23,6 @@ let MediaController = class MediaController {
     create(createMediaDto) {
         return this.mediaService.create(createMediaDto);
     }
-    findAll(queryString) {
-        return this.mediaService.findAll(queryString);
-    }
     findOne(params) {
         return this.mediaService.findOne(params.id);
     }
@@ -47,13 +44,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MediaController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('/'),
-    __param(0, (0, common_1.Query)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [media_dto_1.GetAllMediaDto]),
-    __metadata("design:returntype", void 0)
-], MediaController.prototype, "findAll", null);
-__decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
@@ -61,10 +51,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MediaController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Get)('search'),
+    (0, common_1.Get)('/search'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [media_dto_1.GetAllMediaDto]),
+    __metadata("design:paramtypes", [media_dto_1.SearchMediaDto]),
     __metadata("design:returntype", void 0)
 ], MediaController.prototype, "search", null);
 __decorate([

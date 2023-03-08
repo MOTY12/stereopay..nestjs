@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateMediaDto = exports.GetMediaDto = exports.GetAllMediaDto = exports.CreateMediaDto = void 0;
+exports.UpdateMediaDto = exports.GetMediaDto = exports.SearchMediaDto = exports.GetAllMediaDto = exports.CreateMediaDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateMediaDto {
 }
@@ -56,17 +56,35 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], GetAllMediaDto.prototype, "status", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], GetAllMediaDto.prototype, "title", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], GetAllMediaDto.prototype, "description", void 0);
 exports.GetAllMediaDto = GetAllMediaDto;
+class SearchMediaDto {
+}
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumberString)(),
+    __metadata("design:type", Number)
+], SearchMediaDto.prototype, "limit", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumberString)(),
+    __metadata("design:type", Number)
+], SearchMediaDto.prototype, "page", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], SearchMediaDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], SearchMediaDto.prototype, "title", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], SearchMediaDto.prototype, "description", void 0);
+exports.SearchMediaDto = SearchMediaDto;
 class GetMediaDto {
 }
 __decorate([

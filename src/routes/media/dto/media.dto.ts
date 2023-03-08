@@ -35,6 +35,21 @@ export class GetAllMediaDto {
     @IsOptional()
     @IsString()
     readonly status: string;
+    
+}
+
+export class SearchMediaDto {
+    @IsOptional()
+    @IsNumberString()
+    readonly limit: number;
+
+    @IsOptional()
+    @IsNumberString()
+    readonly page: number;
+
+    @IsOptional()
+    @IsString()
+    readonly status: string;
 
     @IsOptional()
     @IsString()

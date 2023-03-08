@@ -72,6 +72,12 @@ let MediaService = class MediaService {
                 status: 'active'
             };
             const result = await this.mediaRepository.findOne({ where: modelParameter });
+            if (!result) {
+                return {
+                    statusCode: common_1.HttpStatus.NOT_FOUND,
+                    message: 'Media not found',
+                };
+            }
             return {
                 statusCode: common_1.HttpStatus.OK,
                 message: 'Media found successfully',
@@ -81,7 +87,7 @@ let MediaService = class MediaService {
         catch (err) {
             return {
                 statusCode: common_1.HttpStatus.BAD_REQUEST,
-                message: 'Media not found',
+                message: err.message,
             };
         }
     }
@@ -96,11 +102,12 @@ let MediaService = class MediaService {
                 status: pageOptions.status,
             };
             if (queryString.title) {
-                filter['title'] = queryString.title;
+                filter.title = new RegExp(`${queryString.title}`, 'i');
             }
             if (queryString.description) {
-                filter['description'] = queryString.description;
+                filter.description = new RegExp(`${queryString.description}`, 'i');
             }
+            console.log(filter);
             const result = await this.mediaRepository.find({
                 where: filter,
                 take: pageOptions.limit,

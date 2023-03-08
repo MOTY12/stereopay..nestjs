@@ -55,14 +55,23 @@ $ npm run test:cov
 ## Endpoint
 
 ```bash
-# unit tests
-$ npm run test
+$ POST media
+# Create a new media object
 
-# e2e tests
-$ npm run test:e2e
+$ GET media?page=1&perPage=12
+# Fetch a paginated list of existing media objects
 
-# test coverage
-$ npm run test:cov
+$ GET media/:id
+# Fetch a single media by id
+
+$ GET media/search?query=xyz
+# Search media by title and description
+
+$ PATCH media/:id
+# Update an existing media by id. This endpoint should only accept changes to the status field.
+
+$ DELETE media/:id
+# Soft delete a media item by id.
 ```
 
 ## Stay in touch
